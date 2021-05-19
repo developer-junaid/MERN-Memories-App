@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 // Route Handlers
 import PostMessage from "../models/postMessage.js";
 
@@ -30,4 +32,22 @@ export const createPost = async (req, res) => {
   }
 
   res.send("Post Creation");
+};
+
+export const updatePost = async (req, res) => {
+  const { id: _id } = req.params;
+  const post = req.body;
+
+  // Check
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("No post with that id");
+  }
+
+  // If post exists update it
+  const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {
+    new: true,
+  });
+
+  // Return Post
+  res.json(updatedPost);
 };
