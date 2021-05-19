@@ -7,6 +7,12 @@ const posts = (posts = [], action) => {
     case "CREATE":
       return [...posts, action.payload];
 
+    case "UPDATE":
+      // If ids are same return it's data
+      return posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
+
     default:
       return posts;
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
 // Image to String
 import FileBase from "react-file-base64";
@@ -13,7 +13,7 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 // Styles
 import useStyles from "./styles";
 
-export default function Form() {
+export default function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -30,10 +30,18 @@ export default function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost(postData));
+    // If we are updating
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      // If we are creating
+      dispatch(createPost(postData));
+    }
   };
 
   const clear = () => {};
+
+  // Get current id of the post
 
   // Return
   return (

@@ -12,7 +12,7 @@ import Post from "./Post/Post";
 // Styles
 import useStyles from "./styles";
 
-export default function Posts() {
+export default function Posts({ setCurrentId }) {
   const classes = useStyles();
   const posts = useSelector((state) => state.posts); // Use Posts reducer
   console.log(posts);
@@ -30,7 +30,7 @@ export default function Posts() {
       {posts.map((post) => (
         // Return Posts
         <Grid item key={post.id} xs={12} sm={6}>
-          <Post post={post} />
+          <Post setCurrentId={setCurrentId} post={post} />
         </Grid>
       ))}
     </Grid>
