@@ -29,7 +29,7 @@ export default function Form({ currentId, setCurrentId }) {
   const dispatch = useDispatch();
   const post = useSelector((state) =>
     currentId
-      ? state.posts.find((postToFind) => postToFind.id === currentId)
+      ? state.posts.find((postToFind) => postToFind._id === currentId)
       : null
   );
 
