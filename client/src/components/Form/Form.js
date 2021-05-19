@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 
 // Image to String
@@ -21,10 +21,24 @@ export default function Form({ currentId, setCurrentId }) {
     tags: "",
     selectedFile: "",
   });
+
+  // Styles
   const classes = useStyles();
 
   // Redux
   const dispatch = useDispatch();
+  const post = useSelector((state) =>
+    currentId
+      ? state.posts.find((postToFind) => postToFind.id === currentId)
+      : null
+  );
+
+  // UseEffect
+  useEffect(() => {
+    if (post) {
+      setPostData(post);
+    }
+  }, [post]);
 
   // Handlers
   const handleSubmit = (e) => {
