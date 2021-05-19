@@ -17,6 +17,12 @@ const posts = (posts = [], action) => {
       // Keep all posts except payload
       return posts.filter((post) => post._id !== action.payload);
 
+    case "LIKE":
+      // If ids are same return it's data
+      return posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
+
     default:
       return posts;
   }

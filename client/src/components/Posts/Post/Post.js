@@ -2,7 +2,7 @@ import React from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../actions/posts";
+import { deletePost, likePost } from "../../../actions/posts";
 
 // Material-UI
 import {
@@ -70,7 +70,13 @@ export default function Post({ post, setCurrentId }) {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            dispatch(likePost(post._id));
+          }}
+        >
           <ThumbUpAltIcon fontSize="small" />
           Like
           {post.likeCount}
