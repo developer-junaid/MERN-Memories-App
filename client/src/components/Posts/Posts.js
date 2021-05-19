@@ -27,9 +27,9 @@ export default function Posts() {
       alignItems="stretch"
       spacing={3}
     >
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         // Return Posts
-        <Grid item key={index} xs={12} sm={6}>
+        <Grid item key={post.id} xs={12} sm={6}>
           <Post post={post} />
         </Grid>
       ))}
