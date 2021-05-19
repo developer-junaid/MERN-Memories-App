@@ -1,5 +1,9 @@
 import React from "react";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../actions/posts";
+
 // Material-UI
 import {
   Card,
@@ -23,6 +27,9 @@ import useStyles from "./styles";
 
 export default function Post({ post, setCurrentId }) {
   const classes = useStyles();
+
+  // Redux
+  const dispatch = useDispatch();
 
   // Return
   return (
@@ -68,7 +75,13 @@ export default function Post({ post, setCurrentId }) {
           Like
           {post.likeCount}
         </Button>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            dispatch(deletePost(post._id));
+          }}
+        >
           <DeleteIcon fontSize="small" />
           Delete
         </Button>

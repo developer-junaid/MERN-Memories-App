@@ -13,6 +13,10 @@ const posts = (posts = [], action) => {
         post._id === action.payload._id ? action.payload : post
       );
 
+    case "DELETE":
+      // Keep all posts except payload
+      return posts.filter((post) => post._id !== action.payload);
+
     default:
       return posts;
   }
