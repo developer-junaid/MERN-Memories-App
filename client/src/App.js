@@ -26,7 +26,7 @@ export default function App() {
   useEffect(() => {
     // Use Dispatch for actions
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   // Return
   return (

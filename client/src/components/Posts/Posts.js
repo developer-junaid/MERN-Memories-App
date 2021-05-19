@@ -15,7 +15,6 @@ import useStyles from "./styles";
 export default function Posts({ setCurrentId }) {
   const classes = useStyles();
   const posts = useSelector((state) => state.posts); // Use Posts reducer
-  console.log(posts);
 
   // Return
   return !posts.length ? (

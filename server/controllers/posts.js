@@ -44,9 +44,13 @@ export const updatePost = async (req, res) => {
   }
 
   // If post exists update it
-  const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {
-    new: true,
-  });
+  const updatedPost = await PostMessage.findByIdAndUpdate(
+    _id,
+    { ...post, _id },
+    {
+      new: true,
+    }
+  );
 
   // Return Post
   res.json(updatedPost);

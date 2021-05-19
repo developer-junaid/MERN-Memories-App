@@ -41,6 +41,18 @@ export default function Form({ currentId, setCurrentId }) {
   }, [post]);
 
   // Handlers
+
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,9 +63,9 @@ export default function Form({ currentId, setCurrentId }) {
       // If we are creating
       dispatch(createPost(postData));
     }
-  };
 
-  const clear = () => {};
+    clear();
+  };
 
   // Get current id of the post
 
@@ -66,7 +78,10 @@ export default function Form({ currentId, setCurrentId }) {
         className={` ${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">
+          {" "}
+          {currentId ? "Editing" : "Creating"} a Memory
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
