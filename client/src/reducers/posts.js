@@ -1,23 +1,31 @@
+import {
+  CREATE,
+  DELETE,
+  FETCH_ALL,
+  LIKE,
+  UPDATE,
+} from "./../constants/actionTypes";
+
 const posts = (posts = [], action) => {
   // Logic
   switch (action.type) {
-    case "FETCH_ALL":
+    case FETCH_ALL:
       return action.payload;
 
-    case "CREATE":
+    case CREATE:
       return [...posts, action.payload];
 
-    case "UPDATE":
+    case UPDATE:
       // If ids are same return it's data
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
 
-    case "DELETE":
+    case DELETE:
       // Keep all posts except payload
       return posts.filter((post) => post._id !== action.payload);
 
-    case "LIKE":
+    case LIKE:
       // If ids are same return it's data
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
