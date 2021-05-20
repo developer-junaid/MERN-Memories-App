@@ -8,11 +8,12 @@ export const getPosts = async (req, res) => {
     const postMessages = await PostMessage.find({});
 
     res.status(200).json(postMessages);
+    // Stop further execution
+    return;
   } catch (error) {
     res.status(404).json({ message: error.message });
+    return;
   }
-
-  res.send("THIS WORKS!");
 };
 
 export const createPost = async (req, res) => {
@@ -26,9 +27,11 @@ export const createPost = async (req, res) => {
 
     // Successful Creation
     res.status(201).json(newPost);
+    return;
   } catch (error) {
     // Unsuccessful Creation
     res.status(409).json({ message: error.message });
+    return;
   }
 
   res.send("Post Creation");
