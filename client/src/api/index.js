@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Backend route
-const url = "http://localhost:5000/posts";
+const url = "https://memories-manager.herokuapp.com/posts";
 
 export const fetchPosts = () => axios.get(url); // Fetch Posts
 
