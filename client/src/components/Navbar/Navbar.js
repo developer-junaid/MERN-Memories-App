@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // React Router DOM
 import { Link } from "react-router-dom";
@@ -15,7 +15,16 @@ import memories from "./../../images/memories.png";
 const Navbar = () => {
   const classes = useStyles();
 
-  const user = null;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  console.log(user);
+
+  useEffect(() => {
+    const token = user?.token;
+
+    // JWT
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, []);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
