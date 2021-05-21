@@ -1,5 +1,4 @@
 // Models (Collections)
-
 import mongoose from "mongoose";
 
 // Schema
