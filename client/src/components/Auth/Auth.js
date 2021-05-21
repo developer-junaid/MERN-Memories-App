@@ -10,6 +10,9 @@ import {
   Container,
 } from "@material-ui/core";
 
+// Actions
+import { signin, signup } from "../../actions/auth";
+
 // Redux
 import { useDispatch } from "react-redux";
 
@@ -27,12 +30,22 @@ import { GoogleLogin } from "react-google-login";
 import useStyles from "./styles";
 import Input from "./Input";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const Auth = () => {
   const classes = useStyles();
 
   const [isSignup, setIsSignup] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState(initialState);
 
   const clientId =
     "691810798091-vbg78hd82abl5avregge7l5mgotav39s.apps.googleusercontent.com";
@@ -42,9 +55,20 @@ const Auth = () => {
   const history = useHistory();
 
   // Handlers
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleChange = () => {};
+    if (isSignup) {
+      // If user clicked sign up
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
