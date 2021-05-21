@@ -19,7 +19,7 @@ app.use(cors());
 
 // Routes and Middleware
 app.use("/posts", postRoutes); // Each route start with /posts/route
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hellow to Memories API");
