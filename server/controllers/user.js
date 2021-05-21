@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"; // Keep user signed in for some period of time
 // Collection
 import User from "../models/user.js";
 
-export const sigin = async (req, res) => {
+export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -38,7 +38,7 @@ export const sigin = async (req, res) => {
   }
 };
 
-export const sigup = async (req, res) => {
+export const signup = async (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
   try {
