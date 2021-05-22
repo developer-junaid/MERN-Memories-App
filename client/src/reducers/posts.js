@@ -23,6 +23,7 @@ const posts = (posts = [], action) => {
 
     case DELETE:
       // Keep all posts except payload
+
       return posts.filter((post) => post._id !== action.payload);
 
     case LIKE:

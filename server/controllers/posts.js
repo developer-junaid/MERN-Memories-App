@@ -72,7 +72,7 @@ export const deletePost = async (req, res) => {
   }
 
   // Delete
-  await PostMessage.findOneAndRemove(id);
+  await PostMessage.findByIdAndRemove(id);
 
   res.json({ message: "Post deleted successfully" });
 };
