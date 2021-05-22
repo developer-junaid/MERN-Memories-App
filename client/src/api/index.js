@@ -2,8 +2,16 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "http://localhost:5000" });
 
-// Backend route
-const url = "https://memories-manager.herokuapp.com/posts";
+// Add Interceptor
+API.interceptors.request.use((req) => {
+  // Attach authorization token to request headers
+  if (localStorage.getItem("profile")) {
+    req.headers.authorization = `Bearer ${JSON.parse(
+      localStorage.getItem("profile")
+    )}`;
+  }
+  return req;
+});
 
 export const fetchPosts = () => API.get("/posts"); // Fetch Posts
 export const createPost = (newPost) => API.post("/posts", newPost); // Create Post

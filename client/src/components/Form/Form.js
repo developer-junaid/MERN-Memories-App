@@ -15,7 +15,6 @@ import useStyles from "./styles";
 
 export default function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({
-    creator: "",
     title: "",
     message: "",
     tags: "",
@@ -40,12 +39,12 @@ export default function Form({ currentId, setCurrentId }) {
     }
   }, [post]);
 
-  // Handlers
+  const user = JSON.parse(localStorage.getItem("profile"));
 
+  // Handlers
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      creator: "",
       title: "",
       message: "",
       tags: "",
@@ -58,16 +57,29 @@ export default function Form({ currentId, setCurrentId }) {
 
     // If we are updating
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
+      dispatch(
+        updatePost(currentId, { ...postData, user: user?.result?.name })
+      );
     } else {
       // If we are creating
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, user: user?.result?.name }));
     }
 
     clear();
   };
 
   // Get current id of the post
+
+  // If no logged in user
+  if (!user?.result?.name) {
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own memories, and like other's memories.
+        </Typography>
+      </Paper>
+    );
+  }
 
   // Return
   return (
@@ -82,16 +94,7 @@ export default function Form({ currentId, setCurrentId }) {
           {" "}
           {currentId ? "Editing" : "Creating"} a Memory
         </Typography>
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        />
+
         <TextField
           name="title"
           variant="outlined"
@@ -120,7 +123,7 @@ export default function Form({ currentId, setCurrentId }) {
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
-        <div className={classes.fileInputs}>
+        <div className={classes.fileInputs} style={{ margin: "1rem" }}>
           <FileBase
             type="file"
             multiple={false}
