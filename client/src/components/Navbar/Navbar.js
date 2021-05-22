@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // React Router DOM
 import { Link, useHistory, useLocation } from "react-router-dom";
 
+// JWT
+import decode from "jwt-decode";
+
 // Material-ui
 import { AppBar, Typography, Toolbar, Avatar, Button } from "@material-ui/core";
 
@@ -41,6 +44,10 @@ const Navbar = () => {
     const token = user?.token;
 
     // JWT
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
