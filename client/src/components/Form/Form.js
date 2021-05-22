@@ -58,11 +58,11 @@ export default function Form({ currentId, setCurrentId }) {
     // If we are updating
     if (currentId) {
       dispatch(
-        updatePost(currentId, { ...postData, user: user?.result?.name })
+        updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
       // If we are creating
-      dispatch(createPost({ ...postData, user: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
     }
 
     clear();
