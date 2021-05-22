@@ -11,9 +11,8 @@ export const signin = async (req, res) => {
     // Find if user exists
     const existingUser = await User.findOne({ email });
 
-    // If there's no user
     if (!existingUser)
-      return res.status(404).json({ message: "User doesn't exist." });
+      return res.status(404).json({ message: "User doesn't exist" });
 
     // Check pwd
     const isPasswordCorrect = await bcrypt.compare(
@@ -26,6 +25,7 @@ export const signin = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
 
     // If password is correct and user exists
+
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
       "test",
@@ -33,8 +33,8 @@ export const signin = async (req, res) => {
     );
 
     res.status(200).json({ result: existingUser, token });
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong." });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
 
@@ -59,8 +59,8 @@ export const signup = async (req, res) => {
     // Create user
     const result = await User.create({
       email,
-      password: hashedPassword,
       name: `${firstName} ${lastName}`,
+      password: hashedPassword,
     });
 
     const token = jwt.sign({ email: result.email, id: result._id }, "test", {
