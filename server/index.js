@@ -6,6 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 // Initialize app
 const app = express();
@@ -18,11 +19,11 @@ app.use(cors());
 
 // Routes and Middleware
 app.use("/posts", postRoutes); // Each route start with /posts/route
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hellow to Memories API");
 });
-// Update
 // Connect to DB
 const PORT = process.env.PORT || 5000;
 
