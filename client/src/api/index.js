@@ -6,9 +6,9 @@ const API = axios.create({ baseURL: "http://localhost:5000" });
 API.interceptors.request.use((req) => {
   // Attach authorization token to request headers
   if (localStorage.getItem("profile")) {
-    req.headers.authorization = `Bearer ${JSON.parse(
-      localStorage.getItem("profile")
-    )}`;
+    let token = JSON.parse(localStorage.getItem("profile")).token;
+
+    req.headers.authorization = `Bearer ${token}`;
   }
   return req;
 });

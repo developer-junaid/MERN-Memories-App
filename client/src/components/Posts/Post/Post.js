@@ -21,6 +21,7 @@ import moment from "moment";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 
 // Styles
 import useStyles from "./styles";
@@ -30,6 +31,38 @@ export default function Post({ post, setCurrentId }) {
 
   // Redux
   const dispatch = useDispatch();
+
+  // User
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  // Likes Sub Component
+  const Likes = () => {
+    if (post.likes.length > 0) {
+      return post.likes.find(
+        (like) => like === (user?.result?.googleId || user?.result?._id)
+      ) ? (
+        <>
+          <ThumbUpAltIcon fontSize="small" />
+          &nbsp;
+          {post.likes.length > 2
+            ? `You and ${post.likes.length - 1} others`
+            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+        </>
+      ) : (
+        <>
+          <ThumbUpAltOutlined fontSize="small" />
+          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
+        </>
+      );
+    }
+
+    return (
+      <>
+        <ThumbUpAltOutlined fontSize="small" />
+        &nbsp;Like
+      </>
+    );
+  };
 
   // Return
   return (
@@ -76,10 +109,9 @@ export default function Post({ post, setCurrentId }) {
           onClick={() => {
             dispatch(likePost(post._id));
           }}
+          disabled={!user?.result}
         >
-          <ThumbUpAltIcon fontSize="small" />
-          &nbsp;Like &nbsp;
-          {post.likeCount}
+          <Likes />
         </Button>
         <Button
           size="small"
