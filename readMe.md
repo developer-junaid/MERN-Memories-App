@@ -2,7 +2,6 @@
 
 ### _Memories Manager Applciation, where Users can add, delete, update and like memories, and View each other's memories !!_
 
-
 ### Link :link: https://memories-manager.netlify.app/
 
 ### Backend Deployed at: :link: https://memories-manager.herokuapp.com/posts
@@ -16,7 +15,6 @@
 <img src='./projectImages/mobile.png/' />
 <img src='./projectImages/mobile2.png/' />
 
-
 ## Run Locally
 
 - Run this command `git clone https://github.com/developer-junaid/MERN-Memories-App.git`
@@ -24,6 +22,7 @@
 
 ## Features
 
+- Authentication (Login/Signup)
 - Create and Update Memories
 - Like and Delete Memories
 - View Other user's memories
@@ -43,6 +42,7 @@
 - MongoDB Atlas
 
 ## Packages
+
 - Frontend
 - - axios
 - - moment
@@ -51,10 +51,15 @@
 - - @material-ui/core
 - - @material-ui/icons
 - - react-file-base64
+- - react-google-login (for google login feature)
+- - jwt-decode (web tokens decoding)
+
 - Backend
 - - express
-- - mongoose
+- - mongoose (for managing mongoDB)
 - - cors
-- - dotenv
+- - dotenv (for environment variables)
 - - body-parser
 - - nodemon
+- - bcryptjs (for password hashing)
+- - jsonwebtoken (for web tokens and sessions)
