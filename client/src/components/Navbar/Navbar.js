@@ -16,7 +16,8 @@ import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 
 // Picture
-import memories from "./../../images/memories.png";
+import memoriesLogo from "./../../images/memoriesLogo.png";
+import memoriesText from "./../../images/memoriesText.png";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -54,23 +55,15 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          className={classes.heading}
-          component={Link}
-          to="/"
-          variant="h2"
-          align="center"
-        >
-          Memories
-        </Typography>
+      <Link to="/" className={classes.brandContainer}>
+        <img src={memoriesText} alt="icon" height="45px" />
         <img
           className={classes.image}
-          src={memories}
+          src={memoriesLogo}
           alt="memories"
-          height="60"
+          height="40px"
         />
-      </div>
+      </Link>
       <Toolbar className={classes.toolbar}>
         {user ? (
           <div className={classes.profile}>
