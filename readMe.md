@@ -50,6 +50,8 @@
 - - redux-thunk
 - - @material-ui/core
 - - @material-ui/icons
+- - material-ui-chip-input
+- - @material-ui/lab
 - - react-file-base64
 - - react-google-login (for google login feature)
 - - jwt-decode (web tokens decoding)
