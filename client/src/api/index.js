@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://memories-manager.herokuapp.com" });
+// const API = axios.create({ baseURL: "https://memories-manager.herokuapp.com" });
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
 // Add Interceptor
 API.interceptors.request.use((req) => {
@@ -14,13 +15,13 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = () => API.get("/posts"); // Fetch Posts
-export const fetchPostsBySearch = (searchQuery) => {
+export const fetchPostsBySearch = (searchQuery) =>
   API.get(
-    `/posts/searchQuery=?${searchQuery.search || "none"}&tags=${
+    `/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${
       searchQuery.tags
     }`
   );
-};
+
 export const createPost = (newPost) => API.post("/posts", newPost); // Create Post
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost); // Update Post

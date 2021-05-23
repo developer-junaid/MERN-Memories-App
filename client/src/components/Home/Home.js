@@ -65,7 +65,7 @@ const Home = () => {
     setTags(tags.filter((tag) => tag !== tagToDelete));
 
   const searchPost = () => {
-    if (search.trim()) {
+    if (search.trim() || tags) {
       // Dispatch = Fetch search post
       dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
     } else {
@@ -98,7 +98,7 @@ const Home = () => {
                 variant="outlined"
                 label="Search Memories"
                 fullWidth
-                value="TEST"
+                value={search}
                 onKeyPress={handleKeyPress}
                 onChange={(e) => setSearch(e.target.value)}
               ></TextField>
