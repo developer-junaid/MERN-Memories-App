@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { getPosts } from "../../actions/posts";
+import { getPosts, getPostsBySearch } from "../../actions/posts";
 
 // Material-ui
 import {
@@ -67,6 +67,7 @@ const Home = () => {
   const searchPost = () => {
     if (search.trim()) {
       // Dispatch = Fetch search post
+      dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
     } else {
       history.push("/");
     }
