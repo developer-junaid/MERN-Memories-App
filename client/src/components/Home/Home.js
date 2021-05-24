@@ -39,16 +39,10 @@ const Home = () => {
   const dispatch = useDispatch();
   const query = useQuery();
   const history = useHistory();
-  const page = query.get("page");
+  const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
-
-  // Use Effect
-  useEffect(() => {
-    // Use Dispatch for actions
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
 
   // Handlers
   const handleKeyPress = (e) => {
@@ -124,7 +118,7 @@ const Home = () => {
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <Paper elevation={6}>
-              <Pagination />
+              <Pagination page={page} />
             </Paper>
           </Grid>
         </Grid>
