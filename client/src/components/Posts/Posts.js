@@ -14,10 +14,12 @@ import useStyles from "./styles";
 
 export default function Posts({ setCurrentId }) {
   const classes = useStyles();
-  const { posts } = useSelector((state) => state.posts); // Use Posts reducer
+  const { posts, isLoading } = useSelector((state) => state.posts); // Use Posts reducer
+
+  if (!posts.length && !isLoading) return "No posts";
 
   // Return
-  return !posts?.length ? (
+  return isLoading ? (
     <CircularProgress />
   ) : (
     <Grid

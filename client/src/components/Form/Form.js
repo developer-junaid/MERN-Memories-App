@@ -83,7 +83,7 @@ export default function Form({ currentId, setCurrentId }) {
 
   // Return
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate
