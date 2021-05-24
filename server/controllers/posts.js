@@ -3,6 +3,18 @@ import mongoose from "mongoose";
 // Route Handlers
 import PostMessage from "../models/postMessage.js";
 
+export const getPost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await PostMessage.findById(id);
+
+    return res.status(200).json(post);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
+
 export const getPosts = async (req, res) => {
   // Get page number
   const { page } = req.query;
@@ -19,13 +31,11 @@ export const getPosts = async (req, res) => {
       .limit(LIMIT)
       .skip(startIndex);
 
-    return res
-      .status(200)
-      .json({
-        data: posts,
-        currentPage: Number(page),
-        totalPages: Math.ceil(total / LIMIT),
-      });
+    return res.status(200).json({
+      data: posts,
+      currentPage: Number(page),
+      totalPages: Math.ceil(total / LIMIT),
+    });
     // Stop further execution
   } catch (error) {
     return res.status(404).json({ message: error.message });

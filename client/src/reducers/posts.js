@@ -5,6 +5,7 @@ import {
   LIKE,
   UPDATE,
   FETCH_BY_SEARCH,
+  FETCH_POST,
   STOP_LOADING,
   START_LOADING,
 } from "./../constants/actionTypes";
@@ -24,6 +25,12 @@ const posts = (state = { isLoading: true, posts: [] }, action) => {
         posts: action.payload.data,
         currentPage: action.payload.currentPage,
         totalPages: action.payload.totalPages,
+      };
+
+    case FETCH_POST:
+      return {
+        ...state,
+        post: action.payload,
       };
 
     case FETCH_BY_SEARCH:

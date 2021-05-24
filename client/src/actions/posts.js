@@ -7,11 +7,25 @@ import {
   LIKE,
   STOP_LOADING,
   START_LOADING,
+  FETCH_POST,
   UPDATE,
 } from "./../constants/actionTypes";
 
 // Action Creators
 // Functions that return actions
+export const getPost = (id) => async (dispatch) => {
+  // Fetch Data
+  try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPost(id);
+    dispatch({ type: STOP_LOADING });
+
+    dispatch({ type: FETCH_POST, payload: data });
+  } catch (error) {
+    console.log("get post", error);
+  }
+};
+
 export const getPosts = (page) => async (dispatch) => {
   // Fetch Data
   try {
