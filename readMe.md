@@ -26,6 +26,7 @@
 - Create and Update Memories
 - Like and Delete Memories
 - View Other user's memories
+- Recommended Posts
 - Mobile Responsive
 - Open Source (Tweak it and use it) :)
 - Pagination
