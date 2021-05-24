@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 // Actions
-import { getPost } from "../../actions/posts";
+import { getPost, getPostsBySearch } from "../../actions/posts";
 
 // Moment
 import moment from "moment";
@@ -34,7 +34,15 @@ const PostDetails = () => {
   useEffect(() => {
     // Get Post by Id
     dispatch(getPost(id));
-  }, [id]);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (post) {
+      dispatch(
+        getPostsBySearch({ search: "none", tags: post?.tags.join(",") })
+      );
+    }
+  }, [post]);
 
   if (!post) return null;
 
@@ -45,6 +53,14 @@ const PostDetails = () => {
       </Paper>
     );
   }
+
+  let recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+
+  if (recommendedPosts?.length > 4) {
+    recommendedPosts = recommendedPosts.splice(0, 3);
+  }
+
+  const openPost = (_id) => history.push(`/posts/${_id}`);
 
   // Return
   return (
@@ -90,6 +106,39 @@ const PostDetails = () => {
           />
         </div>
       </div>
+      {recommendedPosts.length && (
+        <div className={classes.section}>
+          <Typography gutterBottom variant="h5">
+            You might also like:
+          </Typography>
+          <Divider />
+          <div className={classes.recommendedPosts}>
+            {recommendedPosts.map(
+              ({ title, message, name, likes, selectedFile, _id }) => (
+                <div
+                  style={{ margin: "20px", cursor: "pointer" }}
+                  onClick={() => openPost(_id)}
+                  key={_id}
+                >
+                  <Typography variant="h6" gutterBottom>
+                    {title}
+                  </Typography>
+                  <Typography variant="subtitle2" gutterBottom>
+                    {name}
+                  </Typography>
+                  <Typography variant="subtitle2" gutterBottom>
+                    {message}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    Likes: {likes.length}
+                  </Typography>
+                  <img src={selectedFile} width="200px" alt="image12" />
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      )}
     </Paper>
   );
 };

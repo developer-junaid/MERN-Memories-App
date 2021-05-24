@@ -10,6 +10,9 @@ import FileBase from "react-file-base64";
 // Material-UI
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 
+// React Router
+import { useHistory } from "react-router-dom";
+
 // Styles
 import useStyles from "./styles";
 
@@ -28,9 +31,11 @@ export default function Form({ currentId, setCurrentId }) {
   const dispatch = useDispatch();
   const post = useSelector((state) =>
     currentId
-      ? state.posts.find((postToFind) => postToFind._id === currentId)
+      ? state.posts.post.find((postToFind) => postToFind._id === currentId)
       : null
   );
+
+  const history = useHistory();
 
   // UseEffect
   useEffect(() => {
@@ -62,7 +67,7 @@ export default function Form({ currentId, setCurrentId }) {
       );
     } else {
       // If we are creating
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, history));
     }
 
     clear();
