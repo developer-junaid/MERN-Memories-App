@@ -7,37 +7,45 @@ import {
   FETCH_BY_SEARCH,
 } from "./../constants/actionTypes";
 
-const posts = (posts = [], action) => {
+const posts = (state = [], action) => {
   // Logic
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      return {
+        ...state,
+        posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        totalPages: action.payload.totalPages,
+      };
 
     case FETCH_BY_SEARCH:
-      return action.payload;
+      return {
+        ...state,
+        posts: action.payload,
+      };
 
     case CREATE:
-      return [...posts, action.payload];
+      return [...state, action.payload];
 
     case UPDATE:
       // If ids are same return it's data
-      return posts.map((post) =>
+      return state.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
 
     case DELETE:
       // Keep all posts except payload
 
-      return posts.filter((post) => post._id !== action.payload);
+      return state.filter((post) => post._id !== action.payload);
 
     case LIKE:
       // If ids are same return it's data
-      return posts.map((post) =>
+      return state.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
 
     default:
-      return posts;
+      return state;
   }
 };
 
