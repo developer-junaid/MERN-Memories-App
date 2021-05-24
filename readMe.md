@@ -4,11 +4,15 @@
 
 ### Link :link: https://memories-manager.netlify.app/
 
-### Backend Deployed at: :link: https://memories-manager.herokuapp.com/posts
+### Backend Deployed at: :link: https://memories-manager.herokuapp.com/
 
 ## Interface
 
 <img src='./projectImages/home.png/' />
+<img src='./projectImages/details.png/' />
+<img src='./projectImages/signIn.png/' />
+<img src='./projectImages/signUp.png/' />
+
 
 ## Mobile Interface
 
