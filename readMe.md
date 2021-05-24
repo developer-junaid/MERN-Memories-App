@@ -22,12 +22,14 @@
 
 ## Features
 
-- Authentication (Login/Signup)
+- Authentication (Login/Signup) and with (Google)
 - Create and Update Memories
 - Like and Delete Memories
 - View Other user's memories
 - Mobile Responsive
 - Open Source (Tweak it and use it) :)
+- Pagination
+- Validation
 
 ## Tech Stack
 
