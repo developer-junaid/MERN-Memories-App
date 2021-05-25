@@ -31,9 +31,11 @@ export default function Form({ currentId, setCurrentId }) {
   const dispatch = useDispatch();
   const post = useSelector((state) =>
     currentId
-      ? state.posts.post.find((postToFind) => postToFind._id === currentId)
+      ? state.posts.posts.find((postToFind) => postToFind._id === currentId)
       : null
   );
+
+  // const post = useSelector((state) => state.posts.posts);
 
   const history = useHistory();
 
