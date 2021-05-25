@@ -6,6 +6,8 @@
 
 ### Backend Deployed at: :link: https://memories-manager.herokuapp.com/
 
+### Video Demo: https://youtu.be/jjcGWCJwFo0
+
 ## Interface
 
 <img src='./projectImages/home.png/' />
