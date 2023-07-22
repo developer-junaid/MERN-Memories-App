@@ -4,7 +4,7 @@
 
 ### Link :link: https://memories-manager.netlify.app/
 
-### Backend Deployed at: :link: https://memories-manager.herokuapp.com/
+### Backend Deployed at: :link: https://memories-gd24.onrender.com/
 
 ### Video Demo: https://youtu.be/jjcGWCJwFo0
 
@@ -14,7 +14,6 @@
 <img src='./projectImages/details.png/' />
 <img src='./projectImages/signIn.png/' />
 <img src='./projectImages/signUp.png/' />
-
 
 ## Mobile Interface
 
